@@ -1,7 +1,7 @@
 {
-  "name": "next-chrome-starter",
+  "name": "lease-calc-extension",
   "version": "0.0.1",
-  "description": "Next.js Chrome Extension Starter, Demo Example by ibnzUK. https://github.com/ibnzUK/next-chrome-starter",
+  "description": "Chrome Extension for LeaseCalc - Enhancing the LeaseCalc web application with browser integration by Mohammed Isa",
   "main": "index.js",
   "scripts": {
     "build": "npm run prep",
@@ -10,9 +10,9 @@
     "run": "next start",
     "dev": "next dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["lease", "calculator", "chrome-extension", "nextjs"],
+  "author": "Mohammed Isa",
+  "license": "MIT",
   "dependencies": {
     "glob": "^10.2.3",
     "next": "^13.4.1",
