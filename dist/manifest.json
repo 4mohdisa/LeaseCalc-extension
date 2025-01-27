@@ -7,7 +7,9 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icons/icon16.png"
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
     }
   },
   "icons": {
@@ -16,6 +18,10 @@
     "128": "icons/icon128.png"
   },
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'"
-  }
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; object-src 'self'"
+  },
+  "web_accessible_resources": [{
+    "resources": ["*.js", "assets/*.js", "assets/*.css"],
+    "matches": ["<all_urls>"]
+  }]
 }
