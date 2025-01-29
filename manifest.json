@@ -1,27 +1,29 @@
 {
   "manifest_version": 3,
   "name": "LeaseCalc Extension",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Chrome Extension for LeaseCalc - Property lease calculations made easy",
-  "permissions": [],
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    }
-  },
   "icons": {
     "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
     "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "192": "icons/icon192.png"
   },
-  "content_security_policy": {
-    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; object-src 'self'"
-  },
-  "web_accessible_resources": [{
-    "resources": ["*.js", "assets/*.js", "assets/*.css"],
-    "matches": ["<all_urls>"]
-  }]
+  "permissions": [],
+  "web_accessible_resources": [
+    {
+      "resources": ["index.html", "index.js", "index.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["inject.js"]
+    }
+  ],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "index.html"
+  }
 }
