@@ -1,7 +1,7 @@
 {
   "name": "lease-calc-extension",
   "version": "0.0.1",
-  "description": "Chrome Extension for LeaseCalc - Enhancing the LeaseCalc web application with browser integration by Mohammed Isa",
+  "description": "Chrome Extension for LeaseCal - Enhancing the LeaseCal web application with browser integration by Mohammed Isa",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,12 +13,12 @@
   "keywords": [
     "lease",
     "calculator",
-    "chrome-extension",
-    "nextjs"
+    "chrome-extension"
   ],
   "author": "Mohammed Isa",
   "license": "MIT",
   "dependencies": {
+    "date-fns": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -30,7 +30,6 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "cross-env": "^7.0.3",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",

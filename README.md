@@ -1,6 +1,6 @@
-# LeaseCalc Chrome Extension 🧮
+# LeaseCal Chrome Extension 🧮
 
-A powerful Chrome extension that enhances the LeaseCalc web application with seamless browser integration and additional features.
+A powerful Chrome extension that enhances the LeaseCal web application with seamless browser integration and additional features.
 
 ## Table of Contents ✨  
 
@@ -12,13 +12,13 @@ A powerful Chrome extension that enhances the LeaseCalc web application with sea
 
 # Description
 
-LeaseCalc Chrome Extension extends the functionality of the LeaseCalc web application directly in your browser. This extension provides quick access to lease calculations and management features without leaving your current webpage.
+LeaseCal Chrome Extension extends the functionality of the LeaseCal web application directly in your browser. This extension provides quick access to lease calculations and management features without leaving your current webpage.
 
 ![Preview](Screen2.jpg)
 
 # Installation
 
-To install and run LeaseCalc Chrome Extension locally, follow these steps:
+To install and run LeaseCal Chrome Extension locally, follow these steps:
 
 1. Clone this repository
 2. Navigate to project directory: 
@@ -53,19 +53,19 @@ npm run build
 2. Open Google Chrome and navigate to `chrome://extensions/`
 3. Enable "Developer mode" in the top right corner
 4. Click "Load unpacked" and select the `out` directory
-5. The LeaseCalc extension icon should now appear in your Chrome toolbar
+5. The LeaseCal extension icon should now appear in your Chrome toolbar
 
 ![Preview](Screen1.jpg)
 
 ## Features
-- Quick access to LeaseCalc functionality from any webpage
-- Integration with the LeaseCalc web application
+- Quick access to LeaseCal functionality from any webpage
+- Integration with the LeaseCal web application
 - Streamlined lease calculations
 - Browser toolbar integration
 - Offline capability
 
 # Contributing
-Contributions to LeaseCalc Chrome Extension are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
+Contributions to LeaseCal Chrome Extension are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
 
 # License
 This project is licensed under the MIT License.
