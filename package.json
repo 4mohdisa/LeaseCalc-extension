@@ -1,7 +1,7 @@
 {
-  "name": "lease-calc-extension",
+  "name": "lease-extension",
   "version": "0.0.1",
-  "description": "Chrome Extension for LeaseCal - Enhancing the LeaseCal web application with browser integration by Mohammed Isa",
+  "description": "Chrome Extension for Property Lease - Your comprehensive leasing assistant for finding and managing properties by Mohammed Isa",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
   },
   "keywords": [
     "lease",
-    "calculator",
+    "property",
     "chrome-extension"
   ],
   "author": "Mohammed Isa",
