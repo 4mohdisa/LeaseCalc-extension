@@ -77,7 +77,7 @@ export const Calculator = () => {
 
     const rentAmount = Number(weeklyRent)
     const advance = rentAmount * 2
-    const bond = rentAmount * 4
+    const bond = rentAmount <= 800 ? rentAmount * 4 : rentAmount * 6
     const total = advance + bond
 
     setRentResults({
