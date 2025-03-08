@@ -1,19 +1,4 @@
 :root {
-  /* Dark theme */
-  --bg-primary: #111111;
-  --bg-card: #1a1a1a;
-  --bg-input: #222;
-  --bg-input-hover: #2a2a2a;
-  --border-color: #333;
-  --text-primary: #fff;
-  --text-secondary: #888;
-  --text-tertiary: #666;
-  --button-bg: #333;
-  --button-hover: #444;
-  --shadow-color: rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="light"] {
   --bg-primary: #f5f5f5;
   --bg-card: #ffffff;
   --bg-input: #ffffff;
@@ -45,13 +30,6 @@ body {
 .container {
   max-width: 100%;
   margin: 0 auto;
-}
-
-.theme-switch {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.6rem;
 }
 
 .card {

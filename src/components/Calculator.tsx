@@ -10,53 +10,99 @@ const TERM_OPTIONS = [
 ]
 
 export const Calculator = () => {
-  const [activeTab, setActiveTab] = useState('rent')
-  const [isDarkTheme, setIsDarkTheme] = useState(true)
-  
-  // Theme handling
-  useEffect(() => {
-    document.body.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light')
-  }, [isDarkTheme])
+  const [activeTab, setActiveTab] = useState(() => {
+    const savedTab = localStorage.getItem('activeTab')
+    return savedTab || 'rent'
+  })
 
   // Rent Calculator State
-  const [weeklyRent, setWeeklyRent] = useState('')
+  const [weeklyRent, setWeeklyRent] = useState(() => localStorage.getItem('weeklyRent') || '')
   const [rentError, setRentError] = useState('')
   const [rentResults, setRentResults] = useState<{
     advance: number | null
     bond: number | null
     total: number | null
-  }>({
-    advance: null,
-    bond: null,
-    total: null
+  }>(() => {
+    const savedResults = localStorage.getItem('rentResults')
+    return savedResults ? JSON.parse(savedResults) : {
+      advance: null,
+      bond: null,
+      total: null
+    }
   })
 
   // Advertising Calculator State
-  const [term, setTerm] = useState(52)
-  const [advertisingCost, setAdvertisingCost] = useState('')
+  const [term, setTerm] = useState(() => Number(localStorage.getItem('term')) || 52)
+  const [advertisingCost, setAdvertisingCost] = useState(() => localStorage.getItem('advertisingCost') || '')
   const [advertisingError, setAdvertisingError] = useState('')
-  const [advertisingFee, setAdvertisingFee] = useState<number | null>(null)
-  const [useDates, setUseDates] = useState(false)
-  const [moveOutDate, setMoveOutDate] = useState('')
-  const [agreementEndDate, setAgreementEndDate] = useState('')
-  const [weeksRemaining, setWeeksRemaining] = useState('')
-  const [calculatedAdvertisingWeeks, setCalculatedAdvertisingWeeks] = useState<number | null>(null)
+  const [advertisingFee, setAdvertisingFee] = useState<number | null>(() => {
+    const savedFee = localStorage.getItem('advertisingFee')
+    return savedFee ? Number(savedFee) : null
+  })
+  const [useDates, setUseDates] = useState(() => localStorage.getItem('useDates') === 'true')
+  const [moveOutDate, setMoveOutDate] = useState(() => localStorage.getItem('moveOutDate') || '')
+  const [agreementEndDate, setAgreementEndDate] = useState(() => localStorage.getItem('agreementEndDate') || '')
+  const [weeksRemaining, setWeeksRemaining] = useState(() => localStorage.getItem('weeksRemaining') || '')
+  const [calculatedAdvertisingWeeks, setCalculatedAdvertisingWeeks] = useState<number | null>(() => {
+    const savedWeeks = localStorage.getItem('calculatedAdvertisingWeeks')
+    return savedWeeks ? Number(savedWeeks) : null
+  })
   const [dateError, setDateError] = useState<string | null>(null)
-  const [rawMoveOutDate, setRawMoveOutDate] = useState('')
-  const [rawEndDate, setRawEndDate] = useState('')
+  const [rawMoveOutDate, setRawMoveOutDate] = useState(() => localStorage.getItem('rawMoveOutDate') || '')
+  const [rawEndDate, setRawEndDate] = useState(() => localStorage.getItem('rawEndDate') || '')
 
   // Reletting Calculator State
-  const [relettingRent, setRelettingRent] = useState('')
+  const [relettingRent, setRelettingRent] = useState(() => localStorage.getItem('relettingRent') || '')
   const [relettingError, setRelettingError] = useState('')
   const [relettingFee, setRelettingFee] = useState<{
     weeklyRentWithGST: number;
     maximumRelettingFee: number;
-  } | null>(null)
-  const [useDatesReletting, setUseDatesReletting] = useState(false)
-  const [relettingMoveOutDate, setRelettingMoveOutDate] = useState('')
-  const [relettingEndDate, setRelettingEndDate] = useState('')
-  const [relettingWeeksRemaining, setRelettingWeeksRemaining] = useState('')
-  const [calculatedRelettingWeeks, setCalculatedRelettingWeeks] = useState<number | null>(null)
+  } | null>(() => {
+    const savedFee = localStorage.getItem('relettingFee')
+    return savedFee ? JSON.parse(savedFee) : null
+  })
+  const [useDatesReletting, setUseDatesReletting] = useState(() => localStorage.getItem('useDatesReletting') === 'true')
+  const [relettingMoveOutDate, setRelettingMoveOutDate] = useState(() => localStorage.getItem('relettingMoveOutDate') || '')
+  const [relettingEndDate, setRelettingEndDate] = useState(() => localStorage.getItem('relettingEndDate') || '')
+  const [relettingWeeksRemaining, setRelettingWeeksRemaining] = useState(() => localStorage.getItem('relettingWeeksRemaining') || '')
+  const [calculatedRelettingWeeks, setCalculatedRelettingWeeks] = useState<number | null>(() => {
+    const savedWeeks = localStorage.getItem('calculatedRelettingWeeks')
+    return savedWeeks ? Number(savedWeeks) : null
+  })
+
+  // Save state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('activeTab', activeTab)
+    localStorage.setItem('weeklyRent', weeklyRent)
+    localStorage.setItem('rentResults', JSON.stringify(rentResults))
+    localStorage.setItem('term', term.toString())
+    localStorage.setItem('advertisingCost', advertisingCost)
+    localStorage.setItem('advertisingFee', advertisingFee?.toString() || '')
+    localStorage.setItem('useDates', useDates.toString())
+    localStorage.setItem('moveOutDate', moveOutDate)
+    localStorage.setItem('agreementEndDate', agreementEndDate)
+    localStorage.setItem('weeksRemaining', weeksRemaining)
+    localStorage.setItem('calculatedAdvertisingWeeks', calculatedAdvertisingWeeks?.toString() || '')
+    localStorage.setItem('rawMoveOutDate', rawMoveOutDate)
+    localStorage.setItem('rawEndDate', rawEndDate)
+    localStorage.setItem('relettingRent', relettingRent)
+    localStorage.setItem('relettingFee', JSON.stringify(relettingFee))
+    localStorage.setItem('useDatesReletting', useDatesReletting.toString())
+    localStorage.setItem('relettingMoveOutDate', relettingMoveOutDate)
+    localStorage.setItem('relettingEndDate', relettingEndDate)
+    localStorage.setItem('relettingWeeksRemaining', relettingWeeksRemaining)
+    localStorage.setItem('calculatedRelettingWeeks', calculatedRelettingWeeks?.toString() || '')
+  }, [
+    activeTab, weeklyRent, rentResults, term, advertisingCost, advertisingFee,
+    useDates, moveOutDate, agreementEndDate, weeksRemaining, calculatedAdvertisingWeeks,
+    rawMoveOutDate, rawEndDate, relettingRent, relettingFee, useDatesReletting,
+    relettingMoveOutDate, relettingEndDate, relettingWeeksRemaining, calculatedRelettingWeeks
+  ])
+
+  // Set light theme on body
+  useEffect(() => {
+    document.body.setAttribute('data-theme', 'light')
+  }, [])
 
   const formatCurrency = (amount: number) => {
     return amount.toLocaleString('en-AU', {
@@ -251,14 +297,6 @@ export const Calculator = () => {
 
   return (
     <div>
-      <div className="theme-switch">
-        <div 
-          className={`switch ${!isDarkTheme ? 'active' : ''}`}
-          onClick={() => setIsDarkTheme(!isDarkTheme)}
-        />
-        <label className="label" style={{ margin: 0 }}>Light Theme</label>
-      </div>
-
       <div className="tabs">
         <button
           className={`tab ${activeTab === 'rent' ? 'active' : ''}`}
