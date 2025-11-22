@@ -53,6 +53,7 @@ export const Calculator = () => {
 
   // Reletting Calculator State
   const [relettingRent, setRelettingRent] = useState(() => localStorage.getItem('relettingRent') || '')
+  const [lettingFeeWeeks, setLettingFeeWeeks] = useState(() => localStorage.getItem('lettingFeeWeeks') || '1.5')
   const [relettingError, setRelettingError] = useState('')
   const [relettingFee, setRelettingFee] = useState<{
     weeklyRentWithGST: number;
@@ -86,6 +87,7 @@ export const Calculator = () => {
     localStorage.setItem('rawMoveOutDate', rawMoveOutDate)
     localStorage.setItem('rawEndDate', rawEndDate)
     localStorage.setItem('relettingRent', relettingRent)
+    localStorage.setItem('lettingFeeWeeks', lettingFeeWeeks)
     localStorage.setItem('relettingFee', JSON.stringify(relettingFee))
     localStorage.setItem('useDatesReletting', useDatesReletting.toString())
     localStorage.setItem('relettingMoveOutDate', relettingMoveOutDate)
@@ -95,7 +97,7 @@ export const Calculator = () => {
   }, [
     activeTab, weeklyRent, rentResults, term, advertisingCost, advertisingFee,
     useDates, moveOutDate, agreementEndDate, weeksRemaining, calculatedAdvertisingWeeks,
-    rawMoveOutDate, rawEndDate, relettingRent, relettingFee, useDatesReletting,
+    rawMoveOutDate, rawEndDate, relettingRent, lettingFeeWeeks, relettingFee, useDatesReletting,
     relettingMoveOutDate, relettingEndDate, relettingWeeksRemaining, calculatedRelettingWeeks
   ])
 
@@ -223,6 +225,13 @@ export const Calculator = () => {
       return
     }
 
+    // Validate letting fee weeks
+    const lettingFee = parseFloat(lettingFeeWeeks)
+    if (isNaN(lettingFee) || lettingFee <= 0 || lettingFee > 2) {
+      setRelettingError('Letting fee must be between 0 and 2')
+      return
+    }
+
     // Calculate and validate remaining weeks
     let remainingWeeks = 0
     if (useDatesReletting) {
@@ -275,14 +284,14 @@ export const Calculator = () => {
       // Calculate GST inclusive weekly rent (10% GST)
       const weeklyRentWithGST = baseRent * 1.1
 
-      // Calculate two weeks rent with GST
-      const twoWeeksRentWithGST = weeklyRentWithGST * 2
+      // Calculate letting fee weeks rent with GST
+      const lettingFeeRentWithGST = weeklyRentWithGST * lettingFee
 
       // Calculate three quarters term
       const threeQuartersTerm = Math.round(term * 0.75)
 
       // Calculate the reletting fee
-      const relettingFeeAmount = (twoWeeksRentWithGST * remainingWeeks) / threeQuartersTerm
+      const relettingFeeAmount = (lettingFeeRentWithGST * remainingWeeks) / threeQuartersTerm
 
       setCalculatedRelettingWeeks(remainingWeeks)
       setRelettingFee({
@@ -515,6 +524,20 @@ export const Calculator = () => {
                 placeholder="Enter base weekly rent"
                 value={relettingRent}
                 onChange={(e) => setRelettingRent(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="label">Letting Fee (in weeks, max 2)</label>
+              <input
+                className="input"
+                type="number"
+                step="0.1"
+                min="0"
+                max="2"
+                placeholder="e.g., 1.1, 1.5, 2"
+                value={lettingFeeWeeks}
+                onChange={(e) => setLettingFeeWeeks(e.target.value)}
               />
             </div>
 

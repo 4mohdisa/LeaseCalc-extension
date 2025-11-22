@@ -1,12 +1,14 @@
 {
-  "name": "lease-extension",
-  "version": "0.0.1",
-  "description": "Chrome Extension for Property Lease - Your comprehensive leasing assistant for finding and managing properties by Mohammed Isa",
+  "name": "lease-calculator-extension",
+  "version": "1.0.3",
+  "description": "Property management calculator for rent, advertising fees, and reletting fees. Designed for Australian property managers.",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "build:extension": "npm run build && node scripts/prepare-extension.js",
+    "validate": "node scripts/validate-extension.js",
+    "package": "npm run build:extension && node scripts/validate-extension.js && node scripts/package-for-store.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

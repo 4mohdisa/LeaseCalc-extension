@@ -44,25 +44,42 @@ npm run dev
 ## Build and Install in Chrome 🔥
 To build and install the extension in Chrome:
 
-1. Build the project:
+1. Build the extension:
 ```
-npm run build
+npm run build:extension
 ```
-`This will create the extension files in the 'out/' directory`
+`This will create the extension files in the 'dist/' directory`
 
 2. Open Google Chrome and navigate to `chrome://extensions/`
 3. Enable "Developer mode" in the top right corner
-4. Click "Load unpacked" and select the `out` directory
-5. The LeaseCal extension icon should now appear in your Chrome toolbar
+4. Click "Load unpacked" and select the `dist` directory
+5. The Lease Calculator extension icon should now appear in your Chrome toolbar
+
+## Package for Chrome Web Store 📦
+To create a production-ready ZIP file for Chrome Web Store submission:
+
+```
+npm run package
+```
+
+This will:
+- Build the extension
+- Validate all requirements
+- Create `lease-calculator-extension.zip`
+
+See `CHROME_STORE_SUBMISSION.md` for detailed submission instructions.
 
 ![Preview](Screen1.jpg)
 
 ## Features
-- Quick access to LeaseCal functionality from any webpage
-- Integration with the LeaseCal web application
-- Streamlined lease calculations
-- Browser toolbar integration
-- Offline capability
+- **Rent Calculator:** Calculate move-in costs including 2 weeks advance rent and bond (4 or 6 weeks)
+- **Advertising Fee Calculator:** Calculate advertising fees based on remaining lease term
+- **Reletting Fee Calculator:** Calculate maximum reletting fees with configurable letting fee (up to 2 weeks)
+- **Date-based calculations:** Use dates or manual week entry
+- **Smart week rounding:** Automatically rounds weeks when 5+ days remaining
+- **Data persistence:** All inputs saved locally
+- **Australian currency formatting:** AUD with proper formatting
+- **No permissions required:** Privacy-focused, popup-only extension
 
 # Contributing
 Contributions to LeaseCal Chrome Extension are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.

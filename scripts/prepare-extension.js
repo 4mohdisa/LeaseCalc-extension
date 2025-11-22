@@ -51,11 +51,12 @@ copyFile(
   path.join(distDir, 'manifest.json')
 );
 
-// Copy inject.js
-copyFile(
-  path.join(rootDir, 'src', 'inject.js'),
-  path.join(distDir, 'inject.js')
-);
+// Copy icons directory
+const iconsSourceDir = path.join(rootDir, 'icons');
+const iconsDestDir = path.join(distDir, 'icons');
+if (fs.existsSync(iconsSourceDir)) {
+  copyDirectory(iconsSourceDir, iconsDestDir);
+}
 
 // Copy public directory (icons)
 const publicDir = path.join(rootDir, 'public');
